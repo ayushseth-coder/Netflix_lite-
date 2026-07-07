@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Netflix-Lite: An enterprise-grade SPA movie directory featuring debounced searches, infinite scrolling, favorites state persistence, and Gemini AI-assisted discovery.">
+  <title>Netflix-Lite: AI Movie Discovery</title>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+
+  <!-- Sticky Glassmorphic Header -->
+  <header class="navbar">
+    <a href="#/home" class="brand-logo" id="brand-logo">NETFLIX<span style="color: #fff; font-weight: 300;">LITE</span></a>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li class="nav-link active" id="nav-home">
+          <a href="#/home">Browse</a>
+        </li>
+        <li class="nav-link" id="nav-favorites">
+          <a href="#/favorites">My Favorites</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Controls Sub-Header Container (Search & AI Mood Matcher) -->
+  <div class="sub-header-container">
+    <!-- Keyword Search Input Component -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="search" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Search movies by title, actors, plot..." 
+        aria-label="Search movies"
+      />
+    </div>
+
+    <!-- AI Mood Matcher Input Component -->
+    <div class="mood-wrapper">
+      <form id="mood-form" class="mood-form">
+        <input 
+          type="text" 
+          id="mood-input" 
+          class="mood-input" 
+          placeholder="🔮 How are you feeling? (e.g. sad but want action)" 
+          aria-label="AI Mood Matcher search"
+          required
+        />
+        <button type="submit" class="mood-btn" aria-label="Submit AI mood search">
+          <span>Match Mood</span>
+        </button>
+      </form>
+      <!-- Glassmorphic loading spinner overlay -->
+      <div id="mood-loading" class="mood-loading-overlay">
+        <div class="spinner-small"></div>
+        <span style="font-size: 0.85rem; color: #b3b3b3;">Gemini is matching your vibe...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Mood Spotlight Spot Drawer -->
+  <section id="mood-spotlight-container" class="mood-spotlight-container" aria-label="AI Recommended Spotlight"></section>
+
+  <!-- Main Browsing SPA View Panel -->
+  <main id="browse-view" class="view-panel active">
+    <h2 class="view-title">Trending Now</h2>
+    <!-- High-Fidelity Catalog Grid -->
+    <section class="movies-grid-container" id="movies-grid" aria-label="Movie Catalog List"></section>
+    
+    <!-- Infinite Scroll sentinel target bottom indicator -->
+    <div id="sentinel" class="sentinel-loader" aria-label="Load more movies indicator">
+      <div class="spinner-large"></div>
+    </div>
+  </main>
+
+  <!-- Favorites SPA View Panel -->
+  <main id="favorites-view" class="view-panel">
+    <h2 class="view-title">My List</h2>
+    <!-- Favorites Grid -->
+    <section class="movies-grid-container" id="favorites-grid" aria-label="Saved Favorite Movies"></section>
+  </main>
+
+  <!-- Application Bootstrapper (ES6 Modules Entry Point) -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
