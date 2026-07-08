@@ -1,11 +1,3 @@
-
----
-
-# 📄 prompt.md  
-
-```md
-# Sprint-8 Reference Prompts (Information Only)
-
 ## Purpose of This File
 This file documents the **thinking process and reasoning prompts** used while designing the Sprint-8 project.
 
@@ -60,3 +52,10 @@ These prompts are included for:
 
 ---
 
+## Evaluation & Viva Prompts
+- How did you prevent DOM overloading?
+- How did you optimize API calls?
+- How does your application scale to thousands of items?
+- Why did you avoid using frontend frameworks?
+
+---

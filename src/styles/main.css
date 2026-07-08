@@ -641,6 +641,7 @@ body {
 
 .heart-icon.outline {
   fill: none;
+  stroke: PatternColor;
   stroke: currentColor;
   stroke-width: 2.2;
 }
@@ -703,8 +704,6 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  /* Standard property for compatibility */
-  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -729,6 +728,10 @@ body {
 
 .movie-card:hover .movie-title {
   color: hsl(var(--primary));
+}
+
+.movie-title-spacer {
+  height: 1px;
 }
 
 .movie-metadata {

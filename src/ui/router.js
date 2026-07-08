@@ -81,9 +81,6 @@ export const router = {
    * Logic for rendering the Home page view (browse/search)
    */
   initHomeView() {
-    // Re-rendering or re-evaluating the grid based on current store state.
-    // If the movies grid is empty, the bootstrapper in main.js will trigger initial load.
-    // This maintains scroll position and data state when clicking between views!
     const state = store.getState();
     const movieGrid = document.getElementById('movies-grid');
     

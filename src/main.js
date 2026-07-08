@@ -5,6 +5,7 @@ import { renderer } from './ui/renderer.js';
 import { router } from './ui/router.js';
 import { debounce } from './utils/debounce.js';
 import { createInfiniteScrollObserver } from './utils/observer.js';
+import { initConfig } from './config/config.js';
 
 // DOM Elements
 const searchInput = document.getElementById('search-input');
@@ -190,7 +191,10 @@ async function handleMoodSubmit(e) {
 }
 
 // Wire up Application Event Listeners
-function initializeApp() {
+async function initializeApp() {
+  // Load configuration from env.js file first
+  await initConfig();
+
   // Initialize SPA routing
   router.init();
   

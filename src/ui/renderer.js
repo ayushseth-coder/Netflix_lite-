@@ -39,6 +39,10 @@ export const renderer = {
       hasPoster = true;
     }
 
+    // Dynamic premium vector SVG placeholder to draw when TMDB images fail to load locally (e.g. adblocker)
+    const displayTitle = movie.title.length > 22 ? movie.title.substring(0, 19) + '...' : movie.title;
+    const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%23181818"/><rect x="15" y="15" width="270" height="420" rx="8" fill="none" stroke="%232e2e2e" stroke-width="2"/><text x="150" y="170" dominant-baseline="middle" text-anchor="middle" fill="%23E50914" font-family="system-ui,sans-serif" font-size="48" font-weight="bold">🎬</text><text x="150" y="250" dominant-baseline="middle" text-anchor="middle" fill="%23ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="bold">${encodeURIComponent(displayTitle)}</text></svg>`;
+
     return `
       <div class="movie-card" data-id="${movie.id}">
         <div class="poster-wrapper">
@@ -49,7 +53,7 @@ export const renderer = {
                  alt="${movie.title}" 
                  loading="lazy" 
                  onload="this.classList.add('loaded')" 
-                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22 style=%22background:%23222;fill:%23555;font-family:sans-serif;font-size:14px;%22><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22>No Image Available</text></svg>'"
+                 onerror="this.onerror=null; this.src='${fallbackSvg}'; this.classList.add('loaded');"
                />`
             : `<div class="poster-placeholder">
                  <div class="placeholder-icon">🎬</div>
@@ -272,6 +276,10 @@ export const renderer = {
       ? `${CONFIG.TMDB_IMAGE_BASE_URL}/${CONFIG.POSTER_SIZE}${movie.poster_path}`
       : '';
 
+    // Fallback banner poster in case of blockages
+    const displayTitle = movie.title.length > 22 ? movie.title.substring(0, 19) + '...' : movie.title;
+    const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%23181818"/><rect x="15" y="15" width="270" height="420" rx="8" fill="none" stroke="%232e2e2e" stroke-width="2"/><text x="150" y="170" dominant-baseline="middle" text-anchor="middle" fill="%23E50914" font-family="system-ui,sans-serif" font-size="48" font-weight="bold">🎬</text><text x="150" y="250" dominant-baseline="middle" text-anchor="middle" fill="%23ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="bold">${encodeURIComponent(displayTitle)}</text></svg>`;
+
     wrapper.innerHTML = `
       <div class="mood-spotlight-banner" style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.95) 30%, rgba(20, 20, 20, 0.4) 70%, rgba(20, 20, 20, 0.95) 100%), url('${backdropUrl}')">
         <div class="spotlight-content">
@@ -292,7 +300,13 @@ export const renderer = {
         </div>
         ${posterUrl ? `
           <div class="spotlight-poster-container">
-            <img class="spotlight-poster" src="${posterUrl}" alt="${movie.title}" loading="lazy" />
+            <img 
+              class="spotlight-poster" 
+              src="${posterUrl}" 
+              alt="${movie.title}" 
+              loading="lazy" 
+              onerror="this.onerror=null; this.src='${fallbackSvg}';"
+            />
           </div>
         ` : ''}
       </div>

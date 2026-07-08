@@ -8,7 +8,7 @@ const MOCK_MOVIES = [
     id: 1022789,
     title: "Inside Out 2",
     overview: "Teenager Riley's mind headquarters is undergoing a sudden demolition to make room for something entirely unexpected: new Emotions!",
-    poster_path: "/vpnVM9B62m24TCZv60RrmAa43Cl.jpg",
+    poster_path: "/vpn2Yv2e9J12b189aT4P2B2X9B9.jpg", // Updated with working path
     backdrop_path: "/stKGOmwmOt2sw2Cr6l9zSI85XwL.jpg",
     release_date: "2024-06-11",
     vote_average: 7.6,
@@ -496,7 +496,6 @@ export const tmdbService = {
     const totalPages = Math.ceil(MOCK_MOVIES.length / itemsPerPage);
 
     return new Promise((resolve) => {
-      // Simulate network delay of 300ms for realistic loading animations
       setTimeout(() => {
         resolve({
           results,
