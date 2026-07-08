@@ -1,0 +1,18 @@
+{
+  "name": "netflix-lite-spa",
+  "version": "1.0.0",
+  "description": "AI-Powered Movie Discovery Single Page Application",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "node build-env.js"
+  },
+  "keywords": [
+    "netflix",
+    "spa",
+    "vanilla-js",
+    "gemini",
+    "tmdb"
+  ],
+  "author": "",
+  "license": "ISC"
+}
