@@ -9,6 +9,12 @@ In this app, users can browse popular movies, search movies, scroll infinitely w
 
 ---
 
+## live Demo Link 
+http://netflix-lite-five.vercel.app 
+
+## Repository link
+https://github.com/ayushseth-coder/Netflix_lite-.git
+
 ## Data Used
 All movie data is fetched from **The Movie Database (TMDB) API**:
 
